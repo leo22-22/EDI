@@ -1,31 +1,28 @@
 #include <stdio.h>
 #define MAXFILA 50
 
-/* elemento que trafega na fila */
 struct TpElemento
 {
-    int id;
-    int tipo;       /* GRAV_INT, GRAV_EXT, LEITURA, IMPRESSAO */
-    int Prioridade; /* 1=alta ... 4=baixa */
-    int tempoExec;  /* ut necessarios para executar */
+    int id;         
+    int tipo;       
+    int Prioridade; 
+    int tempoExec;  
 };
 
-/* fila com prioridade */
 struct TpFila
 {
     int        FIM;
     TpElemento FILA[MAXFILA];
 };
 
-/* prototipos */
-void inicializar(TpFila &F);
-char filaVazia(int fim);
-char filaCheia(int fim);
-void inserir (TpFila &F, TpElemento elemento);
-TpElemento retirar (TpFila &F);
+void       inicializar   (TpFila &F);
+char       filaVazia     (int fim);
+char       filaCheia     (int fim);
+void       inserir       (TpFila &F, TpElemento elemento);
+TpElemento retirar       (TpFila &F);
 TpElemento elementoInicio(TpFila F);
-TpElemento elementoFim (TpFila F);
-void exibir(TpFila F);
+TpElemento elementoFim   (TpFila F);
+void       exibir        (TpFila F);
 
 void inicializar(TpFila &F)
 {
@@ -52,9 +49,9 @@ void inserir(TpFila &F, TpElemento elemento)
 
     while(i > 0 && F.FILA[i].Prioridade < F.FILA[i-1].Prioridade)
     {
-        aux          = F.FILA[i];
-        F.FILA[i]    = F.FILA[i-1];
-        F.FILA[i-1]  = aux;
+        aux         = F.FILA[i];
+        F.FILA[i]   = F.FILA[i-1];
+        F.FILA[i-1] = aux;
         i--;
     }
 }
@@ -84,21 +81,22 @@ TpElemento elementoFim(TpFila F)
 void exibir(TpFila F)
 {
     int i;
+    char *tipos[] = {"", "GravInt", "GravExt", "Leitura", "Impressao"};
 
-    printf("\n  +-----+----------+----------+---------+-----------+");
-    printf("\n  | Pos |    ID    |   Tipo   |  Prior  | Tempo(ut) |");
-    printf("\n  +-----+----------+----------+---------+-----------+");
+    printf("\n  +-----+-------+-----------+---------+-----------+");
+    printf("\n  | Pos |  ID   |   Tipo    |  Prior  | Tempo(ut) |");
+    printf("\n  +-----+-------+-----------+---------+-----------+");
 
     if(filaVazia(F.FIM))
-        printf("\n  |             (fila vazia)                     |");
+        printf("\n  |           (fila vazia)                      |");
     else
         for(i = 0; i <= F.FIM; i++)
-            printf("\n  | %3d | Tar.%4d |  Tipo%d   |   [%d]   |   %2d ut   |",
+            printf("\n  | %3d | %5d | %-9s |   [%d]   |   %2d ut   |",
                    i,
                    F.FILA[i].id,
-                   F.FILA[i].tipo,
+                   tipos[F.FILA[i].tipo],
                    F.FILA[i].Prioridade,
                    F.FILA[i].tempoExec);
 
-    printf("\n  +-----+----------+----------+---------+-----------+\n");
+    printf("\n  +-----+-------+-----------+---------+-----------+\n");
 }

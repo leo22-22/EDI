@@ -1,3 +1,4 @@
+
 #include <stdio.h>
 #define MAXPILHA 50
 
@@ -7,7 +8,6 @@ struct TpPilha
     TpElemento PILHA[MAXPILHA];
 };
 
-/* prototipos */
 void       inicializar  (TpPilha &p);
 void       PUSH         (TpPilha &p, TpElemento elemento);
 TpElemento POP          (TpPilha &p);
@@ -16,7 +16,6 @@ char       vazia        (int topo);
 char       cheia        (int topo);
 void       exibe        (TpPilha p);
 
-/* implementacoes */
 void inicializar(TpPilha &p)
 {
     p.TOPO = -1;
