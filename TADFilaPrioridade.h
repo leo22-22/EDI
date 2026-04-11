@@ -1,12 +1,15 @@
+#ifndef TADFILAPRIORIDADE_H
+#define TADFILAPRIORIDADE_H
+
 #include <stdio.h>
 #define MAXFILA 50
 
 struct TpElemento
 {
-    int id;         
-    int tipo;       
-    int Prioridade; 
-    int tempoExec;  
+    int id;
+    int tipo;
+    int Prioridade;
+    int tempoExec;
 };
 
 struct TpFila
@@ -81,7 +84,8 @@ TpElemento elementoFim(TpFila F)
 void exibir(TpFila F)
 {
     int i;
-    char *tipos[] = {"", "GravInt", "GravExt", "Leitura", "Impressao"};
+    char tipos[][10] = {"", "GravInt", "GravExt",
+                            "Leitura", "Impressao"};
 
     printf("\n  +-----+-------+-----------+---------+-----------+");
     printf("\n  | Pos |  ID   |   Tipo    |  Prior  | Tempo(ut) |");
@@ -100,3 +104,5 @@ void exibir(TpFila F)
 
     printf("\n  +-----+-------+-----------+---------+-----------+\n");
 }
+
+#endif
